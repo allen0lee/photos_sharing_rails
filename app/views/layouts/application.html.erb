@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PhotosSharingRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="login-infor">
+        <span>&nbsp</span>
+        <% if logged_in? %>
+          <span><%= current_user.email %></span> 
+        <% end %>
+      </div> 
+
+      <div class="icon"><img src="https://tripletsisters.files.wordpress.com/2013/11/ios-7-photo-icon-pn.png?w=514&h=514"></div>       
+        
+      <div class="nav-bar">
+        <nav>
+          <div><a href="/">Home</a></div>
+          <div><a href="/albums">Albums</a></div>
+          <%# <div><a href="/about">About</a></div>  %>
+
+        <% if logged_in? %>
+          <form action="/session" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <div class="logout-btn"><button>Logout</button></div>     
+          </form>
+        <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <%= yield %>
+  </body>
+</html>

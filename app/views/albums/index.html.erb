@@ -1,0 +1,35 @@
+
+<div class="all-albums-container">
+  <div class="display-box">
+
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+
+  $.ajax({
+    url: '/api/albums',
+    method: 'get'
+  }).done(res => {
+    let displayBox = document.querySelector('.display-box')
+
+    for(let i = 0; i < res.length; i++) {
+      let article = document.createElement('article')
+      displayBox.append(article)
+
+      article.innerHTML = 
+      `<div class="album-container">
+        <img src="${res[i].theme_image_url}" alt="">
+        <div class="album-name">
+          <a href="/photos/${res[i].name}/${res[i].id}">
+            ${res[i].name}
+          </a>
+        </div>
+      </div>`
+    }
+  })
+
+</script>
+
